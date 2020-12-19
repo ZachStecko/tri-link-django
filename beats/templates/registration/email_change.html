@@ -1,0 +1,26 @@
+{% extends 'beats/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="wrap">
+<div class="container">
+                <div class="row">
+                                <div class="col-lg-3">
+
+                                </div>
+                                <div class="col-lg-6">
+                                                <h1 class="text-white font-weight-bold">Email Change</h1>
+                                                <br>
+                                                <form class="border border-light p-5 rounded formColour"  method="post">
+                                                {% csrf_token %}
+                                                {{form.as_p}}
+                                                <button type="submit" class="btn btn-primary">Change Email</button>
+                                                </form>
+                                        </div>
+                                        <div class="col-lg-3">
+                                        
+                                                </div>
+        
+</div>
+</div>
+</div>
+{% endblock %}

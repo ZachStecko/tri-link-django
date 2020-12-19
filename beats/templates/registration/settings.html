@@ -1,0 +1,95 @@
+{% extends 'beats/base.html' %}
+{% block content %}
+<div class="wrap">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+        <form class="text-center border border-light rounded formColour" method="post">
+            <div class="vertical-menu">
+                <ul class="menu">
+                  <br>
+                    <li><a href="#username" class="menu-btn">Username</a></li>
+                    <br>
+                    <li><a href="#password" class="menu-btn">Password</a></li>
+                    <br>
+                    <li><a href="#email" class="menu-btn">Email</a></li>
+                    <br>
+                    <li><a href="#subscription" class="menu-btn">Subscription</a></li>
+                    <br>
+                    <li><a href="#download" class="menu-btn">Download</a></li>
+                    <br>
+                    <li><a href="#deleteAccount" class="menu-btn">Close Account</a></li>
+                    <br>
+                  </ul>
+              </div>
+        </form>
+    </div>
+    <div class="col-lg-9">
+      <div id="username" class="menu-content setForm">
+          <form class ="text-center border border-light p-5 rounded formColour setForm">
+              <h3>Your username</h3>
+              <hr class="divider my-4">
+              {{request.user.username}}
+          </form>
+      </div>
+      <div id="password" class="menu-content setForm">
+        <form class ="text-center border border-light p-5 rounded formColour setForm">
+            <h3>Password</h3>
+            <hr class="divider my-4">
+          <a class="btn btn-primary btn-xl js-scroll-trigger setBtn" href="{% url 'password_change' %}">Click here to change your Password</a>
+          </form>
+      </div>
+      <div id="email" class="menu-content setForm">
+          <form class ="text-center border border-light p-5 rounded formColour setForm">
+              <h3>Email</h3>
+              <hr class="divider my-4">
+              {{request.user.email}}
+              <br>
+              <br>
+              <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'email_change' %}">Click here to change your email</a>
+            </form>
+      </div>
+      <div id="subscription" class="menu-content setForm">
+          {% if cancel_at_period_end %}
+          <form class ="text-center border border-light p-5 rounded formColour setForm">
+              <h4>Your membership will run to the end of your billing cycle.</h4>
+            </form>
+          
+          {% elif membership %}
+            <form action="{% url 'settings' %}" class="text-center border border-light p-5 rounded formColour setForm" method="POST">
+              {% csrf_token %}
+              <br>
+              <h3>Your Subscription</h3>
+              <hr class="divider my-4">
+              <input type="submit" value="Cancel Membership?" onclick="clickedSub()" name="cancel" class="btn btn-primary btn-xl js-scroll-trigger">
+              </form>
+              {% else %}
+              <form class ="text-center border border-light p-5 rounded formColour setForm">
+                  <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'join' %}">Get a membership</a>
+                </form>
+              {% endif %}
+      </div>
+      <div id="download" class="menu-content setForm">
+        <form class ="text-center border border-light p-5 rounded formColour setForm" method="POST">
+            {% csrf_token %}
+            <h3>Download the last video you made</h3>
+            <hr class="divider my-4">
+            <input type="submit" value="download" name="download" class="btn btn-primary btn-xl js-scroll-trigger"/>
+        </form>
+    </div>
+    <div id="deleteAccount" class="menu-content setForm">
+      <form class ="text-center border border-light p-5 rounded formColour setForm" method="POST">
+          {% csrf_token %}
+          <h3>Click here to close your account</h3>
+          <hr class="divider my-4">
+          <input type="submit" onclick="clicked()" value="Delete Account" name="deleteAcc" class="btn btn-primary btn-xl js-scroll-trigger"/>
+      </form>
+  </div>
+
+
+  
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  {% load staticfiles %}
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142683106-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142683106-1');
+</script>
+
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <meta name="google-site-verification" content="YOGwQDHYt48JQ7BI81dmQPsO0JCHH4UQlNt6qrNNag0" />
+    <title>tri-link</title>
+    <link href="{% static 'myStyle.css' %}" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link href="{% static 'home/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{% static 'home/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+
+    <!-- Theme CSS - Includes Bootstrap -->
+    <link href="{% static 'home/css/creative.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css"/>
+     
+  </head>
+  {% block content %}
+  <body id="page-top">
+    <div id="nav">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}">tri-link</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+              {% if user.customer.membership %}
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'software' %}">Create</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'join' %}">Get Premium</a>
+                </li>
+              {% endif %}
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'settings' %}">Settings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">Log Out</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'login' %}">Login</a>
+              </li>
+              {% endif %}
+              {% if user.is_authenticated == False %}
+              <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'signup' %}">Sign up</a>
+                </li>
+                {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+<div class="wrap">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5">
+            <br>
+            <br>
+            <br>
+            <h1 class="display-5 text-white-75 font-weight-light mb-5">1 Pick your beat (only mp3 files, for now)</h1>
+            <br>
+            <h1 class="display-5 text-white-75 font-weight-light mb-5">2 Choose your background</h1>
+            <br>
+            <h1 class="display-5 text-white-75 font-weight-light mb-5">3 Let our software take care of the rest</h1>
+        </div>
+        <div class="col-lg-7">
+                <br>
+                <br>
+                <br>
+                <!-- Upload form. Note enctype attribute! -->
+                <form action="{% url 'software' %}" class="border border-light p-5 rounded formColour" enctype="multipart/form-data" method='post'>
+                    {% csrf_token %}
+                    <div class=row>
+                      <div class=col-sm-5>
+                          <h4>Spectrum Stroke Colour</h4>
+                          <div class="color-picker"></div>
+                          <br>
+                          <p>{{ form.strokeColour }}</p>
+                      </div>
+                      <div class=col-sm-2>
+                        
+                        </div>
+                        <div class=col-sm-5>
+                            <h4>Spectrum Fill Colour</h4>
+                            <div class="color-picker2"></div>
+                            <br>
+                            <p>{{ form.fillColour }}</p>
+                          </div>
+                    </div>
+                    <br>
+                    <p class= "h4 mb-2">{{ form.non_field_errors }}</p>
+
+                    <h1 class="dividers"></h1>
+                    <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+                    
+                    <p class="btn btn-dark btn-xl js-scroll-trigger">
+                        {{ form.docfile.errors }}
+                        {{ form.docfile }}
+                    </p>
+                    <h1 class="dividers"></h1>
+                    <br>
+                    <p>{{ form.imgfile.label_tag }} {{ form.imgfile.help_text }}</p>
+                    <p class="btn btn-dark btn-xl js-scroll-trigger">
+                        {{ form.imgfile.errors }}
+                        {{ form.imgfile }}
+                    </p>
+                    <br>
+                    <h1 class="dividers"></h1>
+                   <br>
+                    <p class="text-center"><input type="submit" value="Download Video" id="submitBtn" class="btn btn-primary btn-xl js-scroll-trigger"/></p>
+                </form>
+        </div>
+    
+    </div>
+</div>
+</div>
+{% endblock %}
+        <!-- Bootstrap core JavaScript -->
+        <script src="{% static 'home/vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'home/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      
+        <!-- Plugin JavaScript -->
+        <script src="{% static 'home/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+        <script src="{% static 'home/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+      
+        <!-- Custom scripts for this template -->
+        <script src="{% static 'home/js/creative.min.js' %}"></script>
+        <script src="{% static 'settingsJS.js' %}"></script>     
+        <script src="{% static 'blockUI.js' %}"></script>
+        <script src="{% static 'loading.js' %}"></script>    
+        
+        <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+        <script>
+
+            const pickr = Pickr.create({
+                el: '.color-picker',
+                theme: 'monolith', // or 'monolith', or 'nano'
+    
+                swatches: [
+            'rgba(244, 67, 54)',
+            'rgba(233, 30, 99)',
+            'rgba(156, 39, 176)',
+            'rgba(103, 58, 183)',
+            'rgba(63, 81, 181)',
+            'rgba(33, 150, 243)',
+            'rgba(3, 169, 244)',
+            'rgba(0, 188, 212)',
+            'rgba(0, 150, 136)',
+            'rgba(76, 175, 80)',
+            'rgba(139, 195, 74)',
+            'rgba(205, 220, 57)',
+            'rgba(255, 235, 59)',
+            'rgba(255, 193, 7)'
+        ],
+    
+        components: {
+    
+            // Main components
+            preview: true,
+            opacity: false,
+            hue: true,
+    
+            // Input / output Options
+            interaction: {
+                hex: true,
+                rgba: true,
+                hsla: false,
+                hsva: false,
+                cmyk: false,
+                input: true,
+                clear: true,
+                save: true
+            }
+        }
+        
+    });
+
+    const pickr2 = Pickr.create({
+                el: '.color-picker2',
+                theme: 'monolith', // or 'monolith', or 'nano'
+    
+                swatches: [
+            'rgba(244, 67, 54)',
+            'rgba(233, 30, 99)',
+            'rgba(156, 39, 176)',
+            'rgba(103, 58, 183)',
+            'rgba(63, 81, 181)',
+            'rgba(33, 150, 243)',
+            'rgba(3, 169, 244)',
+            'rgba(0, 188, 212)',
+            'rgba(0, 150, 136)',
+            'rgba(76, 175, 80)',
+            'rgba(139, 195, 74)',
+            'rgba(205, 220, 57)',
+            'rgba(255, 235, 59)',
+            'rgba(255, 193, 7)'
+        ],
+    
+        components: {
+    
+            // Main components
+            preview: true,
+            opacity: false,
+            hue: true,
+    
+            // Input / output Options
+            interaction: {
+                hex: true,
+                rgba: true,
+                hsla: false,
+                hsva: false,
+                cmyk: false,
+                input: true,
+                clear: true,
+                save: true
+            }
+        }
+        
+    });
+
+    pickr.on('save',(...args) => {
+      let colour = args[0].toRGBA();
+      console.log(colour);
+      document.getElementById("id_strokeColour").value = `${Math.floor(colour[0])},${Math.floor(colour[1])},${Math.floor(colour[2])}`;
+    })
+
+    pickr2.on('save',(...args) => {
+      let colour = args[0].toRGBA();
+      console.log(colour);
+      document.getElementById("id_fillColour").value = `${Math.floor(colour[0])},${Math.floor(colour[1])},${Math.floor(colour[2])}`;
+    })
+
+
+        </script>
+      </body>
+      </html>

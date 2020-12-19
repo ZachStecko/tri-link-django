@@ -1,0 +1,31 @@
+{% extends 'beats/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load staticfiles %}
+<div class="wrap">
+<div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <h1 class="display-4 text-white-75 font-weight-light mb-5">Quick sign up</h1>
+                <br>
+                <h1 class="display-4 text-white-75 font-weight-light mb-5">Free trial</h1>
+                <br>
+                <h1 class="display-4 text-white-75 font-weight-light mb-5">Save time to focus on producing</h1>
+            </div>
+            <div class="col-lg-7 shadow">
+                <form class="text-center border border-light p-5 rounded formColour" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+           
+             I have read and agree with the <a href="{% url 'terms_and_conditions' %}">Terms & Conditions</a><br>
+            <!-- Sign in button -->
+            <button class="btn btn-primary btn-block my-4" name="signup" type="submit">Sign up</button>
+            <br>
+            <p><strong>-- OR --</strong></p>
+            <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'img/googlebtn.png' %}"></a>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

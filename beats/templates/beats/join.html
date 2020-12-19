@@ -1,0 +1,42 @@
+{% extends 'beats/base.html' %}
+
+{% block content %}
+<div class="wrap">
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4 text-white-75 font-weight-light mb-5">tri-link Premium</h1>
+  <p class="lead text-white-75 font-weight-light mb-5">Create youtube ready videos in minutes.</p>
+  <p class="text-white-75 font-weight-light mb-5">Made by producers, for producers</p>
+</div>
+
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Monthly</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">$5 <small class="text-muted">/ mo</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Monthly access to our video rendering software</li>
+          <li>Create custom Youtube videos</li>
+        </ul>
+        <a href="{% url 'checkout' %}?plan=monthly" class="btn btn-lg btn-block btn-outline-primary" id="monthly">Get started</a>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Yearly<small class="text-primary">  Save $10!</small></h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">$50 <small class="text-muted">/ yr</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Yearly access to our video rendering software</li>
+          <li>Create custom Youtube videos</li>
+        </ul>
+        <a href="{% url 'checkout' %}?plan=yearly" class="btn btn-lg btn-block btn-primary" id="yearly">Get started</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

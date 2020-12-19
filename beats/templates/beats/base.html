@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  {% load staticfiles %}
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142683106-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-142683106-1');
+    </script>
+
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <meta name="google-site-verification" content="YOGwQDHYt48JQ7BI81dmQPsO0JCHH4UQlNt6qrNNag0" />
+    <title>tri-link</title>
+    <link href="{% static 'myStyle.css' %}" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link href="{% static 'home/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css"/>
+    <!-- Plugin CSS -->
+    <link href="{% static 'home/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+    <!-- Theme CSS - Includes Bootstrap -->
+    <link href="{% static 'home/css/creative.css' %}" rel="stylesheet">
+     
+  </head>
+  <body id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}">tri-link</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+              {% if user.customer.membership %}
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'software' %}">Create</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'join' %}">Get Premium</a>
+                </li>
+              {% endif %}
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'settings' %}">Settings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">Log Out</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'login' %}">Login</a>
+              </li>
+              {% endif %}
+              {% if user.is_authenticated == False %}
+              <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'signup' %}">Sign up</a>
+                </li>
+                {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    {% block content %}
+        {% endblock %}
+
+
+        <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'home/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'home/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'home/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'home/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'home/js/creative.min.js' %}"></script>
+  <script src="{% static 'settingsJS.js' %}"></script>     
+  <script src="{% static 'blockUI.js' %}"></script>
+  <script src="{% static 'loading.js' %}"></script>
+  <script src="{% static 'deleteConfirm.js' %}"></script>
+  <script src="{% static 'pickr.js' %}"></script>     
+</body>
+</html>

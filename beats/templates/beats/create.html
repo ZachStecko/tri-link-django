@@ -1,0 +1,25 @@
+{% extends 'beats/base.html' %}
+{% block content %}
+<div class="wrap">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+
+    </div>
+    <div class="col-lg-6 ">
+        <form class="text-center border border-light p-5 rounded formColour">
+            <h1 class="text-dark font-weight-bold">Thank you for using tri-link</h1>
+            <hr class="divider my-4">
+            <h4 class="dark font-weight-bold">Your video is currently rendering and you will be emailed once it is ready for download</h4>
+            <br>
+        <a class="p-2 text-dark" href="{% url 'home' %}"><button type="button" class="btn btn-lg btn-primary">Home</button></a>
+        </form>
+      
+    </div>
+    <div class="col-lg-3">
+    </div>
+  </div>
+    
+</div>
+</div>
+{% endblock %}
