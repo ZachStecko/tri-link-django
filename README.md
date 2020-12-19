@@ -1,5 +1,7 @@
 ## tri-link
 
+This project was originally built from June-July 2018
+
 This web application is built using Django, serving to demonstrate a way to build a SaaS application with monthly subscription payments using Stripe.  
 
 “Type Beats” are a popular marketing strategy for users uploading their music to YouTube. A popular format for these videos that are uploaded are a background image, with an audio spectrum matching to the beat of the song.  
